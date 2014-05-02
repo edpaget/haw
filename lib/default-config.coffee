@@ -40,9 +40,9 @@ defaultConfig =
 
       b = browserify extensions: ['.coffee', '.eco', '.md', '.markdown']
 
-      b.transform require 'coffeeify'
+      b.transform require {global: true}, 'coffeeify'
 
-      b.transform require 'browserify-eco'
+      b.transform require {global: true}, 'browserify-eco'
 
       b.transform makeTransform ['.md', '.markdown'], (file, content, callback) ->
         marked = require 'marked'
