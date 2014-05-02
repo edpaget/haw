@@ -40,9 +40,9 @@ defaultConfig =
 
       b = browserify extensions: ['.coffee', '.eco', '.md', '.markdown']
 
-      b.transform require {global: true}, 'coffeeify'
+      b.transform {global: true}, require 'coffeeify'
 
-      b.transform require {global: true}, 'browserify-eco'
+      b.transform {global: true}, require 'browserify-eco'
 
       b.transform makeTransform ['.md', '.markdown'], (file, content, callback) ->
         marked = require 'marked'
@@ -62,7 +62,9 @@ defaultConfig =
 
       b.add sourceFile
 
-      b.bundle callback
+      bundleOpts = @bundleOptions or {}
+        
+      b.bundle bundleOpts, callback
 
     coffee: js: ->
       @compile.js.js.apply @, arguments
